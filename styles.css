@@ -1,0 +1,27 @@
+/* CSS Reset */
+* {
+    margin: 0; /* removes default margin */
+    box-sizing: border-box; /* makes elements size include padding and border */
+}
+
+body {
+    background-color: rgb(41, 41, 41);
+    color: whitesmoke;
+    font-family: sans-serif;
+}
+
+.main {
+    background-color: rgb(70, 70, 70);
+    height: 100vh;
+    padding: 20px;
+}
+
+.list {
+    background-color: rgb(41, 41, 41);
+}
+
+.form-box {
+    background-color: rgb(41, 41, 41);
+    padding: 50px 20px;
+    border-radius: 20px;
+}
