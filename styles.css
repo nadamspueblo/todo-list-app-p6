@@ -14,14 +14,60 @@ body {
     background-color: rgb(70, 70, 70);
     height: 100vh;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .list {
     background-color: rgb(41, 41, 41);
+    flex-grow: 1;
+    border-radius: 20px;
+    padding: 50px 20px;
 }
 
 .form-box {
     background-color: rgb(41, 41, 41);
     padding: 50px 20px;
     border-radius: 20px;
+}
+
+.task-item {
+    background-color: dodgerblue;
+    margin-bottom: 4px;
+    padding: 10px 8px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 8px;
+}
+
+.task-item input {
+    width: 20px;
+    height: 20px;
+}
+
+.task-item label {
+    font-size: 20px;
+}
+
+.form-box {
+    display: flex;
+    gap: 8px;
+}
+
+.form-box input {
+    flex-grow: 1;
+    border-radius: 8px;
+    padding: 4px;
+}
+
+.form-box button {
+    background-color: inherit;
+    color: whitesmoke;
+    border: 2px solid whitesmoke;
+    border-radius: 20px;
+    width: 80px;
+    font-size: 24px;
 }
