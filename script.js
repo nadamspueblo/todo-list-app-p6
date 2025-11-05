@@ -32,6 +32,7 @@ function addTask() {
     let checkbox = document.createElement("input");
     checkbox.type = "checkbox";
     checkbox.id = "checkbox" + idNum;
+    checkbox.addEventListener("change", removeTask);
 
     // Create label
     let label = document.createElement("label");
@@ -48,4 +49,31 @@ function addTask() {
 
     // Add the task div to the list
     taskList.appendChild(taskDiv);
+}
+
+function removeTask(event) {
+    // Get the id of the div to remove
+    let checkboxId = event.target.id;
+    let idNum = checkboxId.substring(8);
+    let taskDiv = document.getElementById("task" + idNum);
+    taskDiv.classList.add("remove");
+
+    // Get the task-list container
+    let taskList = document.getElementById("task-list");
+
+    // Remove task div from task-list
+    setTimeout(function() {
+        taskList.removeChild(taskDiv);
+        fixTaskColors();
+    }, 1000)    
+}
+
+function fixTaskColors() {
+    let taskList = document.getElementById("task-list");
+    for (let i = 0; i < taskList.childElementCount; i++) {
+        taskList.children[i].style.backgroundColor = "dodgerblue";
+        if (i % 2 == 1) {
+            taskList.children[i].style.backgroundColor = "turquoise";
+        }
+    }
 }
