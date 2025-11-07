@@ -14,8 +14,33 @@ function addTask() {
     let taskText = textbox.value;
     textbox.value = "";
 
-    createTask(taskText);
+    // Prevent empty task
+    if (taskText == "") {
+        alert("Please enter a task");
+        return;
+    }
+
+    let idNum = generateIdNum();
+
+    createTask(taskText, idNum);
+
+    // Save task to local storage
+    localStorage.setItem("task" + idNum, taskText);
+    console.log(localStorage.length);
     
+}
+
+function generateIdNum() {
+    // Start with idNum = 0
+    let idNum = 0;
+
+    // Check if a task with that id exists
+    while (localStorage.getItem("task" + idNum) != null) {
+        idNum++;
+    }
+
+    // If it doesn, increment idNum and check again
+    return idNum;
 }
 
 function removeTask(event) {
@@ -32,6 +57,7 @@ function removeTask(event) {
     setTimeout(function() {
         taskList.removeChild(taskDiv);
         fixTaskColors();
+        localStorage.removeItem(taskDiv.id);
     }, 1000)    
 }
 
@@ -45,12 +71,9 @@ function fixTaskColors() {
     }
 }
 
-function createTask(taskText) {
+function createTask(taskText, idNum) {
     // Get tasklist 
     let taskList = document.getElementById("task-list");
-
-    // Generate id number
-    let idNum = taskList.childElementCount;
 
     // Create task div
     let taskDiv = document.createElement("div");
@@ -73,10 +96,6 @@ function createTask(taskText) {
     // Set label text
     label.innerText = taskText;
 
-    // Save task to local storage
-    localStorage.setItem(taskDiv.id, taskText);
-    console.log(localStorage.length);
-
     // Add the checkbox the task div
     taskDiv.appendChild(checkbox);
 
@@ -94,7 +113,8 @@ function loadTasks() {
         console.log(key);
         let taskText = localStorage.getItem(key);
         console.log(taskText);
-        createTask(taskText);
+        createTask(taskText, key.substring(4));
     }
+    fixTaskColors();
 }
 loadTasks();
